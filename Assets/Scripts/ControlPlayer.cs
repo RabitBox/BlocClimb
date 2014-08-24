@@ -4,13 +4,19 @@ using System.Collections;
 
 public class ControlPlayer : MonoBehaviour {
 	public float Speed;
-	//public float mSpeed;
+	public bool jump = false;
+	private Vector3 dir;
+	private float rot;
+	private float angle = 0.0f; 
 
 	// Update is called once per frame
 	void Update () {
 		// カメラ or 視点
 		float mouseX = Input.GetAxis("Mouse X");
-		transform.Rotate (new Vector3(0.0f, mouseX, 0.0f), staticField.lookSpeed * Time.deltaTime);
+		angle += mouseX * staticField.lookSpeed * Time.deltaTime;
+		if(angle > 360.0f) angle -= 360.0f;
+		if(angle < 0.0f) angle += 360.0f;
+		transform.localRotation = Quaternion.Euler(0, angle, 0);
 
 		// 移動
 		Move ();
@@ -19,15 +25,28 @@ public class ControlPlayer : MonoBehaviour {
 	// 移動
 	public void Move(){
 		// 入力中の角度
-		Vector3 dir = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0.0f, Input.GetAxisRaw ("Vertical")).normalized;
-		float rot = Mathf.Atan2 (dir.x, dir.z) * Mathf.Rad2Deg + this.transform.localEulerAngles.y;
-		if (rot > 360.0f) rot -= 360.0f;
-		if (rot < 0.0f)	rot += 360.0f;
-		if(dir != new Vector3(0.0f, 0.0f, 0.0f)){
-			Vector3 Vec = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed,
-			                           rigidbody.velocity.y,
-			                           (float)Math.Cos (rot * Math.PI / 180) * Speed);
-			rigidbody.velocity = Vec;
+		if (jump == false) {
+			dir = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0.0f, Input.GetAxisRaw ("Vertical")).normalized;
+			rot = Mathf.Atan2 (dir.x, dir.z) * Mathf.Rad2Deg + this.transform.localEulerAngles.y;
 		}
+		if (rot > 360.0f) rot -= 360.0f;
+		if (rot < 0.0f) rot += 360.0f;
+		float _a = 1.0f;
+		if (dir == new Vector3 (0.0f, 0.0f, 0.0f)) {
+			if(jump) _a = 0.0f;
+			else _a = 0.0f;
+		}
+		Vector3 Vec = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed * _a, rigidbody.velocity.y, (float)Math.Cos (rot * Math.PI / 180) * Speed * _a);
+			rigidbody.velocity = Vec;
+	
+		if (Input.GetButtonDown ("Jump") && jump == false){
+			rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 3.0f, rigidbody.velocity.z);
+			jump = true;
+		}
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		jump = false;
 	}
 }
