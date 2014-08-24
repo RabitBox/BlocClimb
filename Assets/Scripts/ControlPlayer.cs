@@ -4,26 +4,32 @@ using System.Collections;
 
 public class ControlPlayer : MonoBehaviour {
 	public float Speed;
-	public bool jump = false;
 	private Vector3 dir;
 	private float rot;
-	private float angle = 0.0f; 
+	private float angle = 0.0f;
+	private bool jump = false;	// ジャンプ中ならば true
+	private bool hold = false;	// ホールド中ならば true
 
 	// Update is called once per frame
 	void Update () {
-		// カメラ or 視点
-		float mouseX = Input.GetAxis("Mouse X");
-		angle += mouseX * staticField.lookSpeed * Time.deltaTime;
-		if(angle > 360.0f) angle -= 360.0f;
-		if(angle < 0.0f) angle += 360.0f;
-		transform.localRotation = Quaternion.Euler(0, angle, 0);
-
-		// 移動
+		Look ();
 		Move ();
 	}
 
+	// 視点
+	private void Look(){
+		// カメラ or 視点
+		if(hold != true){
+			float mouseX = Input.GetAxis("Mouse X");
+			angle += mouseX * staticField.lookSpeed * Time.deltaTime;
+			if(angle > 360.0f) angle -= 360.0f;
+			if(angle < 0.0f) angle += 360.0f;
+			transform.localRotation = Quaternion.Euler(0, angle, 0);
+		}
+	}
+
 	// 移動
-	public void Move(){
+	private void Move(){
 		// 入力中の角度
 		if (jump == false) {
 			dir = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0.0f, Input.GetAxisRaw ("Vertical")).normalized;
