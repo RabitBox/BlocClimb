@@ -8,14 +8,33 @@ public class ControlPlayer : MonoBehaviour {
 	private float rot;
 	private float angle = 0.0f;
 	public bool jump = false;	// ジャンプ中ならば true
+	public bool touch = false;
 	private bool hold = false;	// ホールド中ならば true
 
 	// Update is called once per frame
 	void Update () {
 		Look ();
+		Hold ();
 		Move ();
 	}
 
+	//------------------------------
+	// 掴み
+	private void Hold(){
+		if(touch == true && jump == false) {
+			//Debug.Log("Hit");
+		}
+		if(touch == false || jump == true) hold = false;
+
+		if(hold){
+
+		}
+		else{
+			this.gameObject.transform.parent = null;
+		}
+	}
+
+	//------------------------------
 	// 視点
 	private void Look(){
 		// カメラ or 視点
@@ -28,6 +47,7 @@ public class ControlPlayer : MonoBehaviour {
 		}
 	}
 
+	//------------------------------
 	// 移動
 	private void Move(){
 		// 入力中の角度

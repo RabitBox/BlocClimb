@@ -2,16 +2,18 @@
 using System.Collections;
 
 public class CheckArm : MonoBehaviour {
-	public bool touch = false;
+	public GameObject touchParent = null;
 
 	private void OnTriggerStay(Collider other)
 	{
 		if (other.tag == "Box") {
-			touch = true;
+			GameObject.Find("Player").GetComponent<ControlPlayer>().touch = true;
+			touchParent = other.gameObject.transform.parent.gameObject;
 		}
 	}
 	private void OnTriggerExit(Collider other)
 	{
-		touch = false;
+		GameObject.Find("Player").GetComponent<ControlPlayer>().touch = false;
+		touchParent = null;
 	}
 }

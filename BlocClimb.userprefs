@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\CheckArm.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\ControlPlayer.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\CheckFoot.cs" Line="14" Column="3" />
-      <File FileName="Assets\Scripts\Player\CheckArm.cs" Line="10" Column="17" />
+      <File FileName="Assets\Scripts\Player\ControlPlayer.cs" Line="25" Column="6" />
+      <File FileName="Assets\Scripts\Player\CheckArm.cs" Line="11" Column="63" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
