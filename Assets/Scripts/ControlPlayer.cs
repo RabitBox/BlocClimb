@@ -7,7 +7,7 @@ public class ControlPlayer : MonoBehaviour {
 	private Vector3 dir;
 	private float rot;
 	private float angle = 0.0f;
-	private bool jump = false;	// ジャンプ中ならば true
+	public bool jump = false;	// ジャンプ中ならば true
 	private bool hold = false;	// ホールド中ならば true
 
 	// Update is called once per frame
@@ -49,10 +49,5 @@ public class ControlPlayer : MonoBehaviour {
 			rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 3.0f, rigidbody.velocity.z);
 			jump = true;
 		}
-	}
-
-	private void OnCollisionEnter(Collision collision)
-	{
-		jump = false;
 	}
 }
