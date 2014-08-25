@@ -10,6 +10,7 @@ public class ControlPlayer : MonoBehaviour {
 	public bool jump = false;	// ジャンプ中ならば true
 	public bool touch = false;
 	private bool hold = false;	// ホールド中ならば true
+	private float SpeedSet = 1.0f;
 
 	// Update is called once per frame
 	void Update () {
@@ -59,17 +60,21 @@ public class ControlPlayer : MonoBehaviour {
 		}
 		if (rot > 360.0f) rot -= 360.0f;
 		if (rot < 0.0f) rot += 360.0f;
-		float _a = 1.0f;
+		SpeedSet = 1.0f;
 		if (dir == new Vector3 (0.0f, 0.0f, 0.0f)) {
-			if(jump) _a = 0.0f;
-			else _a = 0.0f;
+			if(jump) SpeedSet = 0.0f;
+			else SpeedSet = 0.0f;
 		}
-		Vector3 Vec = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed * _a, rigidbody.velocity.y, (float)Math.Cos (rot * Math.PI / 180) * Speed * _a);
+		Vector3 Vec = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed * SpeedSet, rigidbody.velocity.y, (float)Math.Cos (rot * Math.PI / 180) * Speed * SpeedSet);
 			rigidbody.velocity = Vec;
 	
 		if (Input.GetButtonDown ("Jump") && jump == false){
-			rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 3.0f, rigidbody.velocity.z);
+			rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 2.0f, rigidbody.velocity.z);
 			jump = true;
 		}
 	}
+	/*private void OnCollisionStay(Collision other){
+		//if(jump) {if(other.transform.tag == "Box")SpeedSet = 0;}
+		//else {if(other.transform.tag == "Box")SpeedSet = 1;}
+	}//*/
 }
