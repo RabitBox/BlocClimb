@@ -22,12 +22,14 @@ public class ControlPlayer : MonoBehaviour {
 	// 掴み
 	private void Hold(){
 		if(touch == true && jump == false) {
-			//Debug.Log("Hit");
+			hold = true;
 		}
 		if(touch == false || jump == true) hold = false;
 
 		if(hold){
-
+			if(this.gameObject.transform.parent == null){
+				this.gameObject.transform.parent = gameObject.transform.FindChild("Arm").GetComponent<CheckArm>().touchParent;
+			}
 		}
 		else{
 			this.gameObject.transform.parent = null;
