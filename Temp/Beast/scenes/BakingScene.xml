@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ILScene>
+	<LightSource>
+		<Type>Directional</Type>
+		<DirectionalLightShadowAngle>0</DirectionalLightShadowAngle>
+		<Name><![CDATA[Light-4]]></Name>
+		<ObjectToWorld>
+			<r><c>0.707106709</c><c>-0.500000119</c><c>0.500000119</c><c>0</c></r>
+			<r><c>-2.98023224e-008</c><c>0.707106769</c><c>0.707106888</c><c>0</c></r>
+			<r><c>-0.707106948</c><c>-0.50000006</c><c>0.499999881</c><c>0</c></r>
+			<r><c>0</c><c>0</c><c>0</c><c>1</c></r>
+		</ObjectToWorld>
+		<Color>
+			<r>1</r>
+			<g>1</g>
+			<b>1</b>
+		</Color>
+		<ShadowSamples>1</ShadowSamples>
+		<CastShadows>true</CastShadows>
+		<LightLinkMode>None</LightLinkMode>
+	</LightSource>
+</ILScene>

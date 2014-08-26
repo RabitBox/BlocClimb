@@ -46,7 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\HoldBloc.cs" />
+     <Compile Include="Assets\Scripts\CheckVelocity.cs" />
      <Compile Include="Assets\Scripts\Player\CheckArm.cs" />
      <Compile Include="Assets\Scripts\Player\CheckFoot.cs" />
      <Compile Include="Assets\Scripts\Player\ControlCamera.cs" />
