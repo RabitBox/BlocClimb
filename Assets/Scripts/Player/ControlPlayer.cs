@@ -22,14 +22,16 @@ public class ControlPlayer : MonoBehaviour {
 	//------------------------------
 	// 掴み
 	private void Hold(){
-		if(touch == true && jump == false) {
-			hold = true;
-		}
+		// 
+		if(touch == true && jump == false) hold = true;
 		if(touch == false || jump == true) hold = false;
 
+		// 
 		if(hold){
-			if(this.gameObject.transform.parent == null){
-				this.gameObject.transform.parent = gameObject.transform.FindChild("Arm").GetComponent<CheckArm>().touchParent;
+			if(Input.GetMouseButton(0) == true){
+				if(this.gameObject.transform.parent == null) this.gameObject.transform.parent = gameObject.transform.FindChild("Arm").GetComponent<CheckArm>().touchParent;
+			}else{
+				this.gameObject.transform.parent = null;
 			}
 		}
 		else{
@@ -41,7 +43,7 @@ public class ControlPlayer : MonoBehaviour {
 	// 視点
 	private void Look(){
 		// カメラ or 視点
-		if(hold != true){
+		if(this.gameObject.transform.parent == null){
 			float mouseX = Input.GetAxis("Mouse X");
 			angle += mouseX * staticField.lookSpeed * Time.deltaTime;
 			if(angle > 360.0f) angle -= 360.0f;
@@ -53,28 +55,25 @@ public class ControlPlayer : MonoBehaviour {
 	//------------------------------
 	// 移動
 	private void Move(){
-		// 入力中の角度
-		if (jump == false) {
-			dir = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0.0f, Input.GetAxisRaw ("Vertical")).normalized;
-			rot = Mathf.Atan2 (dir.x, dir.z) * Mathf.Rad2Deg + this.transform.localEulerAngles.y;
-		}
-		if (rot > 360.0f) rot -= 360.0f;
-		if (rot < 0.0f) rot += 360.0f;
+
+		dir = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0.0f, Input.GetAxisRaw ("Vertical")).normalized;	// 入力中の角度
+		rot = Mathf.Atan2 (dir.x, dir.z) * Mathf.Rad2Deg + this.transform.localEulerAngles.y;					// 入力 + 現在向いている角度
+		if (rot > 360.0f) rot -= 360.0f;	if (rot < 0.0f) rot += 360.0f;										// 角度補正
 		SpeedSet = 1.0f;
 		if (dir == new Vector3 (0.0f, 0.0f, 0.0f)) {
 			if(jump) SpeedSet = 0.0f;
 			else SpeedSet = 0.0f;
 		}
-		Vector3 Vec = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed * SpeedSet, rigidbody.velocity.y, (float)Math.Cos (rot * Math.PI / 180) * Speed * SpeedSet);
+		Vector3 Vec = new Vector3(0,0,0);// = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed * SpeedSet, rigidbody.velocity.y, (float)Math.Cos (rot * Math.PI / 180) * Speed * SpeedSet);
+		if(jump == false) {
+			Vec = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed * SpeedSet, rigidbody.velocity.y, (float)Math.Cos (rot * Math.PI / 180) * Speed * SpeedSet);;
 			rigidbody.velocity = Vec;
-	
+		}
+
+		// ジャンプ
 		if (Input.GetButtonDown ("Jump") && jump == false){
-			rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 2.0f, rigidbody.velocity.z);
+			rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 3.0f, rigidbody.velocity.z);
 			jump = true;
 		}
 	}
-	/*private void OnCollisionStay(Collision other){
-		//if(jump) {if(other.transform.tag == "Box")SpeedSet = 0;}
-		//else {if(other.transform.tag == "Box")SpeedSet = 1;}
-	}//*/
 }
