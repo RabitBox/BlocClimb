@@ -64,7 +64,7 @@ public class ControlPlayer : MonoBehaviour {
 			if(jump) SpeedSet = 0.0f;
 			else SpeedSet = 0.0f;
 		}
-
+		Debug.Log(rigidbody.isKinematic);
 		// 分岐　親がある or 親がない
 		if(this.gameObject.transform.parent == null){
 			// 移動
@@ -78,10 +78,12 @@ public class ControlPlayer : MonoBehaviour {
 				rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 3.0f, rigidbody.velocity.z);
 				jump = true;
 			}
+			if(rigidbody.isKinematic == true) rigidbody.isKinematic = false;
 		}else{
 			Vec = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed * SpeedSet, rigidbody.velocity.y, (float)Math.Cos (rot * Math.PI / 180) * Speed * SpeedSet);
 			this.gameObject.transform.parent.rigidbody.velocity = Vec;
 			//Debug.Log(Vec);
+			if(rigidbody.isKinematic == false) rigidbody.isKinematic = true;
 		}
 	}
 }
