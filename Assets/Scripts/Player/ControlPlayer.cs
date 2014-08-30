@@ -64,7 +64,7 @@ public class ControlPlayer : MonoBehaviour {
 			if(jump) SpeedSet = 0.0f;
 			else SpeedSet = 0.0f;
 		}
-		Debug.Log(rigidbody.isKinematic);
+		//Debug.Log(rigidbody.isKinematic);
 		// 分岐　親がある or 親がない
 		if(this.gameObject.transform.parent == null){
 			// 移動
