@@ -71,11 +71,18 @@ public class ControlPlayer : MonoBehaviour {
 			if(jump == false) {
 				Vec = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed * SpeedSet, rigidbody.velocity.y, (float)Math.Cos (rot * Math.PI / 180) * Speed * SpeedSet);
 				rigidbody.velocity = Vec;
+			}else{
+				float vx = rigidbody.velocity.x + ((float)Math.Sin (rot * Math.PI / 180) * Speed * SpeedSet) * 0.1f;
+				float vz = rigidbody.velocity.z + ((float)Math.Cos (rot * Math.PI / 180) * Speed * SpeedSet) * 0.1f;
+				if(Math.Abs(vx) > Speed) vx = rigidbody.velocity.x;
+				if(Math.Abs(vz) > Speed) vz = rigidbody.velocity.z;
+				Vec = new Vector3 (vx, rigidbody.velocity.y, vz);
+				rigidbody.velocity = Vec;
 			}
 
 			// ジャンプ
 			if (Input.GetButtonDown ("Jump") && jump == false){
-				rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 3.0f, rigidbody.velocity.z);
+				rigidbody.velocity = new Vector3 (rigidbody.velocity.x, 5.0f, rigidbody.velocity.z);
 				jump = true;
 			}
 			if(rigidbody.isKinematic == true) rigidbody.isKinematic = false;
