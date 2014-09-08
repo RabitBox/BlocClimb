@@ -91,8 +91,9 @@ public class ControlPlayer : MonoBehaviour {
 		}else{
 			Vec = new Vector3 ((float)Math.Sin (rot * Math.PI / 180) * Speed * SpeedSet, rigidbody.velocity.y, (float)Math.Cos (rot * Math.PI / 180) * Speed * SpeedSet);
 			this.gameObject.transform.parent.rigidbody.velocity = Vec;
+			this.gameObject.transform.rigidbody.velocity = Vec;
 
-			if(rigidbody.isKinematic == false) rigidbody.isKinematic = true;
+			//if(rigidbody.isKinematic == false) rigidbody.isKinematic = true;
 
 		}
 	}

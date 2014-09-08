@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\Timer\Assets\hoge.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\ControlPlayer.cs">
     <Files>
-      <File FileName="..\Timer\Assets\hoge.cs" Line="6" Column="21" />
+      <File FileName="Assets\Scripts\Player\ControlPlayer.cs" Line="89" Column="4" />
+      <File FileName="..\Timer\Assets\hoge.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
