@@ -46,14 +46,20 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Camera\depthCheck.cs" />
      <Compile Include="Assets\Scripts\CheckVelocity.cs" />
+     <Compile Include="Assets\Scripts\ClearButton.cs" />
+     <Compile Include="Assets\Scripts\Delete.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GoalCheck.cs" />
+     <Compile Include="Assets\Scripts\PlayMode.cs" />
      <Compile Include="Assets\Scripts\Player\CheckArm.cs" />
      <Compile Include="Assets\Scripts\Player\CheckFoot.cs" />
      <Compile Include="Assets\Scripts\Player\ControlCamera.cs" />
      <Compile Include="Assets\Scripts\Player\ControlPlayer.cs" />
      <Compile Include="Assets\Scripts\Player\staticField.cs" />
+     <Compile Include="Assets\Scripts\Title\SceneOut.cs" />
+     <Compile Include="Assets\Scripts\Title\rotate.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

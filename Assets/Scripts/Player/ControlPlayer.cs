@@ -14,9 +14,36 @@ public class ControlPlayer : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Look ();
-		Hold ();
-		Move ();
+		switch(GameObject.Find("GameManager").GetComponent<PlayMode>().NowMode){
+		case PlayMode.Mode.Play:
+			if(Input.GetMouseButtonDown(1) == true) GameObject.Find("GameManager").GetComponent<PlayMode>().NowMode = PlayMode.Mode.Play2;
+			Look ();
+			Hold ();
+			Move ();
+			break;
+
+		case PlayMode.Mode.Play2:
+			if(Input.GetMouseButtonDown(1) == true)
+				GameObject.Find("GameManager").GetComponent<PlayMode>().NowMode = PlayMode.Mode.Play;
+			break;
+
+		case PlayMode.Mode.Clear:
+			this.gameObject.transform.rigidbody.velocity = new Vector3(0, this.gameObject.transform.rigidbody.velocity.y, 0);
+			break;
+		}
+
+		/*if(GameObject.Find("GameManager").GetComponent<PlayMode>().NowMode == PlayMode.Mode.Play){
+			if(Input.GetMouseButtonDown(1) == true) GameObject.Find("GameManager").GetComponent<PlayMode>().NowMode = PlayMode.Mode.Play2;
+			Look ();
+			Hold ();
+			Move ();
+		}else if(GameObject.Find("GameManager").GetComponent<PlayMode>().NowMode == PlayMode.Mode.Play2){
+			if(Input.GetMouseButtonDown(1) == true)
+				GameObject.Find("GameManager").GetComponent<PlayMode>().NowMode = PlayMode.Mode.Play;
+			
+		}else if(GameObject.Find("GameManager").GetComponent<PlayMode>().NowMode == PlayMode.Mode.Clear){
+			this.gameObject.transform.rigidbody.velocity = new Vector3(0, this.gameObject.transform.rigidbody.velocity.y, 0);
+		}//*/
 	}
 
 	//------------------------------
@@ -78,7 +105,7 @@ public class ControlPlayer : MonoBehaviour {
 				if(Math.Abs(vz) > Speed) vz = rigidbody.velocity.z;
 				Vec = new Vector3 (vx, rigidbody.velocity.y, vz);
 				rigidbody.velocity = Vec;
-			}
+			}//*/
 
 			// ジャンプ
 			if (Input.GetButtonDown ("Jump") && jump == false){

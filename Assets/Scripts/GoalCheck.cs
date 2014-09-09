@@ -2,14 +2,11 @@
 using System.Collections;
 
 public class GoalCheck : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	public GameObject c;
+	private void OnTriggerEnter(Collider other){
+		if(other.tag == "Player"){
+			GameObject.Find("GameManager").GetComponent<GameManager>().clearFlg = true;
+			Instantiate(c);
+		}
 	}
 }
